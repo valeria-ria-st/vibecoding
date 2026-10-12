@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Mini Camp</title>
+  <style>
+    :root { --bg: #f5f7fa; --panel: #ffffff; --accent: #3b82f6; --text: #1f2937; --code-bg: #1e1e1e; --ok: #10b981; --err: #ef4444; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1, h2 { margin-top: 0; }
+    .card { background: var(--panel); padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1); margin-bottom: 1.5rem; }
+    pre { background: var(--code-bg); color: #d4d4d4; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+    code { font-family: Consolas, monospace; }
+    textarea { width: 100%; height: 120px; font-family: monospace; padding: .5rem; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
+    button { background: var(--accent); color: white; border: none; padding: .6rem 1rem; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #2563eb; }
+    .status { padding: .5rem 1rem; border-radius: 4px; display: inline-block; margin-top: .5rem; font-weight: 500; }
+    .ok { background: var(--ok); color: white; }
+    .err { background: var(--err); color: white; }
+    .hidden { display: none; }
+    .steps { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .step { padding: .75rem 1rem; background: #eef2ff; border-radius: 6px; border-left: 4px solid var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Python Mini Camp</h1>
+    <p>Мини‑курс в одном файле: теория + задания с автопроверкой.</p>
+
+    <div class="steps">
+      <div class="step active" data-step="1">Основы</div>
+      <div class="step" data-step="2">Переменные и ввод</div>
+      <div class="step" data-step="3">Условные операторы</div>
+      <div class="step" data-step="4">Циклы</div>
+      <div class="step" data-step="5">Функции</div>
+    </div>
+
+    <!-- Шаг 1 -->
+    <div id="step-1" class="card">
+      <h2>Шаг 1: Основы Python</h2>
+      <p>В Python всё строится на отступах. Простой вывод:</p>
+      <pre><code>print("Привет, мир!")</code></pre>
+      <p><strong>Задание:</strong> Напиши код, который выводит фразу <code>"Python — это просто!"</code>.</p>
+      <textarea id="task-1">print("Python — это просто!")</textarea>
+      <br/>
+      <button onclick="checkTask(1, 'Python — это просто!')">Проверить задание 1</button>
+      <div id="result-1" class="status hidden"></div>
+    </div>
+
+    <!-- Шаг 2 -->
+    <div id="step-2" class="card hidden">
+      <h2>Шаг 2: Переменные и ввод</h2>
+      <p>Переменные хранят данные, <code>input()</code> считывает ввод пользователя:</p>
+      <pre><code>name = input("Как тебя зовут? ")
+print("Привет,", name)</code></pre>
+      <p><strong>Задание:</strong> Считайте имя пользователя и выведите: <code>"Рад видеть, [имя]!"</code>.</p>
+      <textarea id="task-2">name = input()
+print("Рад видеть,", name + "!")</textarea>
+      <br/>
+      <button onclick="checkTask(2, 'Рад видеть,')">Проверить задание 2</button>
+      <div id="result-2" class="status hidden"></div>
+    </div>
+
+    <!-- Шаг 3 -->
+    <div id="step-3" class="card hidden">
+      <h2>Шаг 3: Условные операторы</h2>
+      <p>Условие <code>if</code> проверяет выражение:</p>
+      <pre><code>age = int(input("Сколько тебе лет? "))
+if age >= 18:
+    print("Ты совершеннолетний")
+else:
+    print("Ещё рано")</code></pre>
+      <p><strong>Задание:</strong> Считай число и выведи <code>"Число положительное"</code>, если оно больше 0, иначе <code>"Не положительное"</code>.</p>
+      <textarea id="task-3">num = int(input())
+if num > 0:
+    print("Число положительное")
+else:
+    print("Не положительное")</textarea>
+      <br/>
+      <button onclick="checkTask(3, 'Число положительное')">Проверить задание 3</button>
+      <div id="result-3" class="status hidden"></div>
+    </div>
+
+    <!-- Шаг 4 -->
+    <div id="step-4" class="card hidden">
+      <h2>Шаг 4: Циклы</h2>
+      <p>Цикл <code>for</code> перебирает элементы:</p>
+      <pre><code>for i in range(5):
+    print(i)</code></pre>
+      <p><strong>Задание:</strong> Выведи числа от 1 до 5 (каждое с новой строки).</p>
+      <textarea id="task-4">for i in range(1, 6):
+    print(i)</textarea>
+      <br/>
+      <button onclick="checkTask(4, '1\n2\n3\n4\n5')">Проверить задание 4</button>
+      <div id="result-4" class="status hidden"></div>
+    </div>
+
+    <!-- Шаг 5 -->
+    <div id="step-5" class="card hidden">
+      <h2>Шаг 5: Функции</h2>
+      <p>Функции позволяют переиспользовать код:</p>
+      <pre><code>def greet(name):
+    return "Привет, " + name
+
+print(greet("Анна"))</code></pre>
+      <p><strong>Задание:</strong> Напиши функцию <code>square(x)</code>, которая возвращает квадрат числа, и выведи результат для <code>x = 4</code>.</p>
+      <textarea id="task-5">def square(x):
+    return x * x
+
+print(square(4))</textarea>
+      <br/>
+      <button onclick="checkTask(5, '16')">Проверить задание 5</button>
+      <div id="result-5" class="status hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    // Простой раннер кода: перенаправляет stdout и проверяет вывод
+    const originalLog = console.log;
+    let capturedOutput = '';
+
+    function runCode(code) {
+      capturedOutput = '';
+      console.log = function(msg) {
+        capturedOutput += String(msg) + '\n';
+      };
+      try {
+        eval(code);
+        console.log = originalLog;
+        return capturedOutput.trim();
+      } catch (e) {
+        console.log = originalLog;
+        return 'Ошибка: ' + e.message;
+      }
+    }
+
+    function checkTask(step, expectedSubstring) {
+      const code = document.getElementById('task-' + step).value.trim();
+      const output = runCode(code);
+      const resultEl = document.getElementById('result-' + step);
+
+      if (output.includes(expectedSubstring)) {
+        resultEl.textContent = '✅ Задание выполнено!';
+        resultEl.className = 'status ok';
+        markStepComplete(step);
+      } else {
+        resultEl.textContent = '❌ Неверно. Вывод: ' + output;
+        resultEl.className = 'status err';
+      }
+    }
+
+    function markStepComplete(step) {
+      const stepEl = document.querySelector(`.step[data-step="${step}"]`);
+      stepEl.style.borderLeftColor = '#10b981';
+      stepEl.textContent += ' ✅';
+
+      // Показать следующий шаг
+      const next = step + 1;
+      const currentCard = document.getElementById('step-' + step);
+      const nextCard = document.getElementById('step-' + next);
+      if (nextCard) {
+        currentCard.classList.add('hidden');
+        nextCard.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
